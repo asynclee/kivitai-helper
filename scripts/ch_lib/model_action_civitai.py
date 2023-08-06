@@ -380,7 +380,7 @@ def get_id_and_dl_url_by_version_str(version_str:str, model_info:dict) -> tuple:
 
 # download model from civitai by input
 # output to markdown log
-def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, version_str:str, dl_all_bool:bool, max_size_preview:bool, skip_nsfw_preview:bool) -> str:
+def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, version_str:str, dl_all_bool:bool) -> str:
 
     output = ""
 
@@ -504,7 +504,7 @@ def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, versio
     model.write_model_info(info_file, version_info)
 
     # then, get preview image
-    civitai.get_preview_image_by_model_path(filepath, max_size_preview, skip_nsfw_preview)
+    civitai.get_preview_image_by_model_path(filepath, True, False)
     
     output = "Done. Model downloaded to: " + filepath
     util.printD(output)
