@@ -84,7 +84,6 @@ def scan_model(scan_model_types, max_size_preview, skip_nsfw_preview):
                     civitai.get_preview_image_by_model_path(item, max_size_preview, skip_nsfw_preview)
                     image_count = image_count+1
 
-
     # scan_log = "Done"
 
     output = f"Done. Scanned {model_count} models, checked {image_count} images"
@@ -92,7 +91,6 @@ def scan_model(scan_model_types, max_size_preview, skip_nsfw_preview):
     util.printD(output)
 
     return output
-
 
 
 # Get model info by model type, name and url
@@ -125,7 +123,7 @@ def get_model_info_by_input(model_type, model_name, model_url_or_id, max_size_pr
     info_file = base + civitai.suffix + model.info_ext
 
     # get model info    
-    #we call it model_info, but in civitai, it is actually version info
+    # we call it model_info, but in civitai, it is actually version info
     model_info = civitai.get_version_info_by_model_id(model_id)
 
     if not model_info:
@@ -143,7 +141,6 @@ def get_model_info_by_input(model_type, model_name, model_url_or_id, max_size_pr
 
     output = "Model Info saved to: " + info_file
     return output
-
 
 
 # check models' new version and output to UI as markdown doc
@@ -187,7 +184,6 @@ def check_models_new_version_to_md(model_types:list) -> str:
             # preview image            
             if img_url:
                 part = part + f"<img src='{img_url}'><br>"
-                
 
             output = output + part
 
@@ -272,7 +268,8 @@ def get_model_info_by_url(model_url_or_id:str) -> tuple:
     util.printD(f"subfolders:{subfolders}")
     util.printD(f"version_strs:{version_strs}")
 
-    return (model_info, model_name, model_type, subfolders, version_strs)
+    return model_info, model_name, model_type, subfolders, version_strs
+
 
 # get version info by version string
 def get_ver_info_by_ver_str(version_str:str, model_info:dict) -> dict:
@@ -380,7 +377,13 @@ def get_id_and_dl_url_by_version_str(version_str:str, model_info:dict) -> tuple:
 
 # download model from civitai by input
 # output to markdown log
-def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, version_str:str, dl_all_bool:bool) -> str:
+def dl_model_by_input(
+        model_info: dict,
+        model_type: str,
+        subfolder_str: str,
+        version_str: str,
+        dl_all_bool: bool,
+) -> str:
 
     output = ""
 
@@ -438,7 +441,6 @@ def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, versio
     
     version_id = ver_info["id"]
 
-
     if dl_all_bool:
         # get all download url from files info
         # some model versions have multiple files
@@ -451,7 +453,6 @@ def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, versio
         if not len(download_urls):
             if "downloadUrl" in ver_info.keys():
                 download_urls.append(ver_info["downloadUrl"])
-
 
         # check if this model is already existed
         r = civitai.search_local_model_info_by_version_id(model_folder, version_id)
@@ -487,14 +488,14 @@ def dl_model_by_input(model_info:dict, model_type:str, subfolder_str:str, versio
             util.printD(output)
             return output
 
-
     if not filepath:
         filepath = model_filepath
     
     # get version info
     version_info = civitai.get_version_info_by_version_id(version_id)
     if not version_info:
-        output = "Model downloaded, but failed to get version info, check console log for detail. Model saved to: " + filepath
+        output = "Model downloaded, but failed to get version info, check console log for detail. Model saved to: " + \
+                 filepath
         util.printD(output)
         return output
 
