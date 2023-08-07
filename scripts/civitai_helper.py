@@ -1,9 +1,3 @@
-# -*- coding: UTF-8 -*-
-# This extension can help you manage your models from civitai. It can download preview, add trigger words, open model page and use the prompt from preview image
-# repo: https://github.com/butaixianran/
-
-
-
 import modules.scripts as scripts
 import gradio as gr
 import os
@@ -12,9 +6,6 @@ from scripts.ch_lib import model
 from scripts.ch_lib import model_action_civitai
 from scripts.ch_lib import setting
 from scripts.ch_lib import util
-
-
-# init
 
 # root path
 root_path = os.getcwd()
@@ -51,8 +42,6 @@ def on_ui_tabs():
 
     # ====UI====
     with gr.Blocks(analytics_enabled=False) as civitai_helper:
-    # with gr.Blocks(css=".block.padded {padding: 10px !important}") as civitai_helper:
-        # session data
         dl_model_info = gr.State({})
 
         with gr.Box(elem_classes="ch_box"):
@@ -73,11 +62,9 @@ def on_ui_tabs():
                 dl_civitai_model_by_id_btn = gr.Button(value="3. Download Model", variant="primary")
                 dl_log_md = gr.Markdown(value="Check Console log for Downloading Status")
 
-        # ====Footer====
+        # footer
         gr.Markdown(f"<center>version:{util.version}</center>")
 
-        # ====events====
-        # Download Model
         dl_model_info_btn.click(
             get_model_info_by_url,
             inputs=dl_model_url_or_id_txtbox,
@@ -89,7 +76,7 @@ def on_ui_tabs():
             outputs=dl_log_md)
 
     # the third parameter is the element id on html, with a "tab_" as prefix
-    return (civitai_helper , "Civitai Helper", "civitai_helper"),
+    return (civitai_helper, "Model Downloader", "model_downloader"),
 
 
 script_callbacks.on_ui_tabs(on_ui_tabs)
