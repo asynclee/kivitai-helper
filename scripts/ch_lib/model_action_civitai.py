@@ -144,7 +144,7 @@ def get_model_info_by_input(model_type, model_name, model_url_or_id, max_size_pr
 
 
 # check models' new version and output to UI as markdown doc
-def check_models_new_version_to_md(model_types:list) -> str:
+def check_models_new_version_to_md(model_types: list) -> str:
     new_versions = civitai.check_models_new_version_by_model_types(model_types, 1)
 
     count = 0
@@ -193,7 +193,7 @@ def check_models_new_version_to_md(model_types:list) -> str:
 
 
 # get model info by url
-def get_model_info_by_url(model_url_or_id:str) -> tuple:
+def get_model_info_by_url(model_url_or_id: str) -> tuple:
     util.printD("Getting model info by: " + model_url_or_id)
 
     # parse model id
@@ -272,7 +272,7 @@ def get_model_info_by_url(model_url_or_id:str) -> tuple:
 
 
 # get version info by version string
-def get_ver_info_by_ver_str(version_str:str, model_info:dict) -> dict:
+def get_ver_info_by_ver_str(version_str: str, model_info: dict) -> dict:
     if not version_str:
         util.printD("version_str is empty")
         return
@@ -316,7 +316,7 @@ def get_ver_info_by_ver_str(version_str:str, model_info:dict) -> dict:
 
 # get download url from model info by version string
 # return - (version_id, download_url)
-def get_id_and_dl_url_by_version_str(version_str:str, model_info:dict) -> tuple:
+def get_id_and_dl_url_by_version_str(version_str: str, model_info: dict) -> tuple:
     if not version_str:
         util.printD("version_str is empty")
         return
@@ -417,7 +417,6 @@ def dl_model_by_input(
 
 
     # get subfolder
-    subfolder = ""
     if subfolder_str == "/" or subfolder_str == "\\":
         subfolder = ""
     elif subfolder_str[:1] == "/" or subfolder_str[:1] == "\\":
@@ -507,6 +506,7 @@ def dl_model_by_input(
     # then, get preview image
     civitai.get_preview_image_by_model_path(filepath, True, False)
     
-    output = "Done. Model downloaded to: " + filepath
+    output = f"Done. Model downloaded to: {filepath.split('/')[-1]}. " \
+             f"Refresh the model list in the top left corner and then check the list."
     util.printD(output)
     return output
