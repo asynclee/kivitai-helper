@@ -12,10 +12,10 @@ from . import setting
 suffix = ".civitai"
 
 url_dict = {
-    "modelPage":"https://kivitai-demo.krafton-ai.com/models/",
-    "modelId": "https://kivitai-demo.krafton-ai.com/api/v1/models/",
-    "modelVersionId": "https://kivitai-demo.krafton-ai.com/api/v1/model-versions/",
-    "hash": "https://kivitai-demo.krafton-ai.com/api/v1/model-versions/by-hash/"
+    "modelPage":"https://diffusion-art-hub.krafton-ai.com/models/",
+    "modelId": "https://diffusion-art-hub.krafton-ai.com/api/v1/models/",
+    "modelVersionId": "https://diffusion-art-hub.krafton-ai.com/api/v1/model-versions/",
+    "hash": "https://diffusion-art-hub.krafton-ai.com/api/v1/model-versions/by-hash/"
 }
 
 model_type_dict = {
