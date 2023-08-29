@@ -48,8 +48,8 @@ def on_ui_tabs():
             with gr.Column():
                 gr.Markdown("### Download Model")
                 with gr.Row():
-                    dl_model_url_or_id_txtbox = gr.Textbox(label="Civitai URL", lines=1, value="")
-                    dl_model_info_btn = gr.Button(value="1. Get Model Info by Civitai Url", variant="primary")
+                    dl_model_url_or_id_txtbox = gr.Textbox(label="Diffusion Art Hub URL", lines=1, value="")
+                    dl_model_info_btn = gr.Button(value="1. Get Model Info by Diffusion Art Hub Url", variant="primary")
 
                 gr.Markdown(value="2. Pick Subfolder and Model Version")
                 with gr.Row():
