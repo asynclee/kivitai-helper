@@ -58,8 +58,8 @@ def on_ui_tabs():
                     dl_subfolder_drop = gr.Dropdown(choices=[], label="Sub-folder", value="", interactive=True, multiselect=False)
                     dl_version_drop = gr.Dropdown(choices=[], label="Model Version", value="", interactive=True, multiselect=False)
                     dl_all_ckb = gr.Checkbox(label="Download All files", value=False, elem_id="ch_dl_all_ckb", elem_classes="ch_vpadding")
-                
-                dl_civitai_model_by_id_btn = gr.Button(value="3. Download Model", variant="primary")
+
+                dl_civitai_model_by_id_btn = gr.Button(value="3. Download Model (The download may take 1-5 minutes)", variant="primary")
                 dl_log_md = gr.Markdown(value="Check Console log for Downloading Status")
 
         # footer
